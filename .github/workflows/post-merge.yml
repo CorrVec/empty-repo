@@ -1,9 +1,5 @@
 name: Move related JIRA tasks status from CODE REVIEW to IN PROGRESS
 
-on:
-  pull_request_review:
-    types: [submitted]
-
 jobs:
   update-jira:
     if: github.event.review.state == 'changes_requested' || github.event.review.state == 'dismissed'
