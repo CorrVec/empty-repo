@@ -1,4 +1,4 @@
-name: Issues
+name: PR Vulns Action
 on: pull_request
 
 jobs:
