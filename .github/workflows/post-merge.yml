@@ -11,4 +11,4 @@ jobs:
     - name: Print title
       shell: bash
       run: |
-        temp=$(echo "${{ github.event.pull_request.title }}")
+        echo "${{ github.event.pull_request.title }}"
