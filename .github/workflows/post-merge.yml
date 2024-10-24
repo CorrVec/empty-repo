@@ -1,15 +1,10 @@
-name: Move related JIRA tasks status from CODE REVIEW to IN PROGRESS
-
+name: Issues
+on:
+  issues:
+    types: [opened]
 jobs:
-  update-jira:
+  print_issue_title:
     runs-on: ubuntu-latest
-
+    name: Print issue title
     steps:
-      - name: Move related JIRA tasks status from CODE REVIEW to IN PROGRESS
-        run: |
-          temp=$(echo "${{ github.event.pull_request.title }}" | grep -o '\[[^]]*\]' | sed 's/\[//;s/\]//' | tr -d ' ')
-          IFS=$',' read -ra keys <<< "$temp"
-          for key in "${keys[@]}"; do
-            echo "Move $key to IN PROGRESS."
-            curl -u ${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }} -X POST --data '{"transition":{"id":"21"}}' -H "Content-Type: application/json" ${{ secrets.JIRA_BASE_URL }}/rest/api/3/issue/$key/transitions
-          done
+    - run: echo "${{github.event.issue.title}}"
