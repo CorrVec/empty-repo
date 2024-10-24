@@ -4,7 +4,7 @@ on:
       branches:
       - main
 jobs:
-  print_issue_title:
+  print_pr_title:
     runs-on: ubuntu-latest
     name: Print pull request title
     steps:
