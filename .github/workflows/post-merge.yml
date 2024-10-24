@@ -1,5 +1,5 @@
 name: PR Vulns Action
-on: pull_request
+on: pull_request_target
 
 jobs:
   print_pr_title:
