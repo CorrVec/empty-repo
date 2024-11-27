@@ -4,9 +4,6 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-22.04
-    outputs:
-      repo_list1: ${{ steps.Json-Splitter.outputs.json1 }}
-      repo_list2: ${{ steps.Json-Splitter.outputs.json2 }}
     environment: renovate
     steps:
       - name: Checkout
@@ -38,7 +35,11 @@ jobs:
 
           ls
           
-      - name: step 2
+  job2:
+    runs-on: ubuntu-22.04
+    environment: renovate
+    steps:
+      - name: readFiles
         run: |
           ls
           cat jsonRepo1.json
