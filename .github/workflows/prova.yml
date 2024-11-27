@@ -25,11 +25,11 @@ jobs:
           list2=$(echo "$repositories" | tail -n +$((split + 1)))
           
           # Crea il primo file json
-          jq --argjson part1 "$(echo "$part1" | jq -Rsc 'split("\n")[:-1]')" \
+          jq --argjson part1 "$(echo "$list1" | jq -Rsc 'split("\n")[:-1]')" \
              '.repositories = $list1' templateRepo.json > jsonRepo1.json
           
           # Crea il secondo file json
-          jq --argjson part2 "$(echo "$part2" | jq -Rsc 'split("\n")[:-1]')" \
+          jq --argjson part2 "$(echo "$list2" | jq -Rsc 'split("\n")[:-1]')" \
              '.repositories = $list2' templateRepo.json > jsonRepo2.json
       
       - name: Upload artifact
