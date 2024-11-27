@@ -32,6 +32,7 @@ jobs:
           ls
   job2:
       runs-on: ubuntu-22.04
+      needs: job1
       environment: renovate
       steps:
         - name: Checkout
