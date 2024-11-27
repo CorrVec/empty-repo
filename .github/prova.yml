@@ -1,0 +1,13 @@
+name: Renovate
+on:
+  workflow_call:
+jobs:
+  renovate:
+    runs-on: ubuntu-22.04
+    environment: renovate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+        # Don't waste time starting Renovate if JSON is invalid
+      - name: Validate Renovate JSON
+        run: ls | pwd
