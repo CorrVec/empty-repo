@@ -11,5 +11,6 @@ jobs:
         # Don't waste time starting Renovate if JSON is invalid
       - name: Validate Renovate JSON
         run: |
-              repo=$(jq '.repositories[]' repo.json)
-              echo "$repo"
+              half=$(( $(jq '.repositories[]' repo.json | wc -l) / 2 ))
+              
+
