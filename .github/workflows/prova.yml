@@ -10,4 +10,6 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
         # Don't waste time starting Renovate if JSON is invalid
       - name: Validate Renovate JSON
-        run: ls | pwd
+        run: |
+              ls
+              pwd
