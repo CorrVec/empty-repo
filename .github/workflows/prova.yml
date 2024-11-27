@@ -11,5 +11,5 @@ jobs:
         # Don't waste time starting Renovate if JSON is invalid
       - name: Validate Renovate JSON
         run: |
-              ls
-              pwd
+              repo=$(jq '.repositories[]' repo.json)
+              cat repo
