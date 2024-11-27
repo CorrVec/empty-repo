@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "github>prova/ciao"
+  ],
+  "repositories": [
+    
+   ]
+}
