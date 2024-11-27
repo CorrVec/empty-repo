@@ -28,24 +28,16 @@ jobs:
           list1=$(echo "$repositories" | head -n "$split")
           list2=$(echo "$repositories" | tail -n +$((split + 1)))
           
-          # Genera due variabili in output
-          echo "json1<<EOF" >> "$GITHUB_OUTPUT"
-          echo "json2<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$list1" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
-          echo "$list2" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
+          # Genera due file
+          echo "$list1" >json1.json
+          echo "$list2" >json2.json
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+        # Don't waste time starting Renovate if JSON is invalid
+      - name: step 2
+        run: |
+          ls
 
-  job2:
-      runs-on: ubuntu-22.04
-      needs: job1
-      environment: renovate
-      steps:
-        - name: Checkout
-          uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
-          # Don't waste time starting Renovate if JSON is invalid
-        - name: step 2
-          run: |
-            echo ${{ steps.jsonSplitter.outputs.json1 }}
-            echo ${{ steps.jsonSplitter.outputs.json2 }}
+
+
 
