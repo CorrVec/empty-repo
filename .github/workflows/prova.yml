@@ -47,5 +47,5 @@ jobs:
         - name: step 2
           run: |
             echo ${{ steps.jsonSplitter.outputs.json1 }}
-            echo ${{ steps.jsonSplitter.outputs.json1 }}
+            echo ${{ steps.jsonSplitter.outputs.json2 }}
 
