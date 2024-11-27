@@ -1,4 +1,4 @@
-name: Renovate
+name: test-renovate
 on:
   workflow_call:
 jobs:
