@@ -12,4 +12,4 @@ jobs:
       - name: Validate Renovate JSON
         run: |
               repo=$(jq '.repositories[]' repo.json)
-              cat repo
+              echo repo
