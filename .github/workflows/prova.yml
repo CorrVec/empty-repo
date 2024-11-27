@@ -50,4 +50,4 @@ jobs:
           name: shared-json-files
       - name: readFiles
         run: |
-          ls
+          cat jsonRepo1.json
