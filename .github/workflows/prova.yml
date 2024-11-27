@@ -31,18 +31,23 @@ jobs:
           # Crea il secondo file json
           jq --argjson part2 "$(echo "$part2" | jq -Rsc 'split("\n")[:-1]')" \
              '.repositories = $part2' templateRepo.json > jsonRepo2.json
-          ls
-          pwd
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: shared-json-files
+          path: |
+            jsonRepo1.json
+            jsonRepo2.json
   job2:
     runs-on: ubuntu-22.04
     needs: job1
     environment: renovate
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: shared-json-files
       - name: readFiles
         run: |
           ls
-          pwd
-
-
-
-
