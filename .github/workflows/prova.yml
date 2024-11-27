@@ -26,8 +26,8 @@ jobs:
           
           # Crea due file json temporanei
           ls
-          echo "$list1" > tmp/repo_list1.json
-          echo "$list2" > tmp/repo_list2.json
+          echo "$list1" > repo_list1.json
+          echo "$list2" > repo_list2.json
   job2:
       runs-on: ubuntu-22.04
       environment: renovate
