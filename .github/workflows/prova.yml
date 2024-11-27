@@ -12,5 +12,5 @@ jobs:
       - name: Validate Renovate JSON
         run: |
               half=$(( $(jq '.repositories[]' repo.json | wc -l) / 2 ))
-              echo "$(half)"
+              echo "$half"
 
