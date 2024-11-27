@@ -11,7 +11,25 @@ jobs:
         # Don't waste time starting Renovate if JSON is invalid
       - name: Compute len and half_len
         run: |
-              len=$(jq '.repositories[]' repo.json | wc -l)
-              half=$(( $(jq '.repositories[]' repo.json | wc -l) / 2 ))
+            # Estrai il contenuto di repositories dal file json
+            repositories=$(jq -r '.repositories[]' repo.json)
+            
+            # Conta il numero totale di elementi
+            total=$(echo "$repositories" | wc -l)
+            
+            # Calcola il punto di divisione
+            split=$(( (total + 1) / 2 ))
+            
+            # Dividi in due parti
+            list1=$(echo "$repositories" | head -n "$split")
+            list2=$(echo "$repositories" | tail -n +$((split + 1)))
+            
+            # Assegna alle variabili
+            var1="$part1"
+            var2="$part2"
+            
+            # Verifica il risultato
+            echo "Lista 1: $var1"
+            echo "Lista 2: $var2"
               
 
