@@ -4,12 +4,16 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-22.04
+    outputs:
+      repo_list1: ${{ steps.Json-Splitter.outputs.json1 }}
+      repo_list2: ${{ steps.Json-Splitter.outputs.json2 }}
     environment: renovate
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
         # Don't waste time starting Renovate if JSON is invalid
-      - name: Compute len and half_len
+      - name: Json-Splitter
+        id: jsonSplitter
         run: |
           # Estrai il contenuto di repositories dal file json
           repositories=$(jq -r '.repositories[]' repo.json)
@@ -24,12 +28,10 @@ jobs:
           list1=$(echo "$repositories" | head -n "$split")
           list2=$(echo "$repositories" | tail -n +$((split + 1)))
           
-          # Crea due file json temporanei
-          echo "$list1"
-          echo "$list2"
-          echo "$list1" > repo_list1.json
-          echo "$list2" > repo_list2.json
-          ls
+          # Genera due variabili in output
+          echo "json1=$list1" >> "$GITHUB_OUTPUT"
+          echo "json2=$list2" >> "$GITHUB_OUTPUT"
+
   job2:
       runs-on: ubuntu-22.04
       needs: job1
@@ -40,6 +42,6 @@ jobs:
           # Don't waste time starting Renovate if JSON is invalid
         - name: step 2
           run: |
-            ls
-            pwd
+            echo ${{ steps.jsonSplitter.outputs.json1 }}
+            echo ${{ steps.jsonSplitter.outputs.json1 }}
 
