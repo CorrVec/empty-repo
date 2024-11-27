@@ -25,9 +25,11 @@ jobs:
           list2=$(echo "$repositories" | tail -n +$((split + 1)))
           
           # Crea due file json temporanei
-          ls
+          echo "$list1"
+          echo "$list2"
           echo "$list1" > repo_list1.json
           echo "$list2" > repo_list2.json
+          ls
   job2:
       runs-on: ubuntu-22.04
       environment: renovate
@@ -39,5 +41,4 @@ jobs:
           run: |
             ls
             pwd
-            ls tmp
 
