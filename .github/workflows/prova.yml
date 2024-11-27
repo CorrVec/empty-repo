@@ -28,15 +28,21 @@ jobs:
           list1=$(echo "$repositories" | head -n "$split")
           list2=$(echo "$repositories" | tail -n +$((split + 1)))
           
-          # Genera due file
-          echo "$list1" >json1.json
-          echo "$list2" >json2.json
+          # Crea il primo file json
+          jq --argjson part1 "$(echo "$part1" | jq -Rsc 'split("\n")[:-1]')" \
+             '.repositories = $part1' templateRepo.json > jsonRepo1.json
+          
+          # Crea il secondo file json
+          jq --argjson part2 "$(echo "$part2" | jq -Rsc 'split("\n")[:-1]')" \
+             '.repositories = $part2' templateRepo.json > jsonRepo2.json
 
           ls
           
       - name: step 2
         run: |
           ls
+          cat jsonRepo1.json
+          cat jsonRepo2.json
 
 
 
