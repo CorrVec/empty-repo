@@ -29,8 +29,12 @@ jobs:
           list2=$(echo "$repositories" | tail -n +$((split + 1)))
           
           # Genera due variabili in output
-          echo "json1=$list1" >> "$GITHUB_OUTPUT"
-          echo "json2=$list2" >> "$GITHUB_OUTPUT"
+          echo "json1<<EOF" >> "$GITHUB_OUTPUT"
+          echo "json2<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$list1" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "$list2" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
 
   job2:
       runs-on: ubuntu-22.04
