@@ -12,5 +12,5 @@ jobs:
       - name: Validate Renovate JSON
         run: |
               len=$(jq '.repositories[]' repo.json | wc -l)
-              echo "$half/2"
+              echo "$len/2"
 
