@@ -25,6 +25,7 @@ jobs:
           list2=$(echo "$repositories" | tail -n +$((split + 1)))
           
           # Crea due file json temporanei
+          ls
           echo "$list1" > tmp/repo_list1.json
           echo "$list2" > tmp/repo_list2.json
   job2:
