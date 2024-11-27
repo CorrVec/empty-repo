@@ -32,8 +32,6 @@ jobs:
           # Crea il secondo file json
           jq --argjson part2 "$(echo "$part2" | jq -Rsc 'split("\n")[:-1]')" \
              '.repositories = $part2' templateRepo.json > jsonRepo2.json
-
-          ls
           
   job2:
     runs-on: ubuntu-22.04
@@ -43,8 +41,6 @@ jobs:
       - name: readFiles
         run: |
           ls
-          cat jsonRepo1.json
-          cat jsonRepo2.json
 
 
 
