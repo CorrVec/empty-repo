@@ -1,6 +1,6 @@
 name: test-renovate
 on:
-  workflow_call:
+  workflow_dispatch
 jobs:
   renovate:
     runs-on: ubuntu-22.04
